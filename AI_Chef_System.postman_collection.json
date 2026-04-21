@@ -1,0 +1,221 @@
+{
+  "info": {
+    "name": "AI Chef System",
+    "description": "Test collection for AI Chef System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "session_id",
+      "value": "user_john_001",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Chef Greeting",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"message\": \"Hi chef! I want to cook something delicious\",\n  \"creativity\": \"balanced\",\n  \"verbosity\": \"normal\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "chat"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Provide Ingredients",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"message\": \"I have chicken, tomato, onion, garlic, olive oil, basil, and salt\",\n  \"creativity\": \"balanced\",\n  \"verbosity\": \"normal\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "chat"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Set Creative Personality",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"creativity\": \"creative\",\n  \"verbosity\": \"detailed\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/set-personality",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "set-personality"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Request Creative Recipe",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"message\": \"OK, I'm ready! What should I cook? Any creative ideas?\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "chat"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Set Strict Traditional Mode",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"strict_session\",\n  \"creativity\": \"strict\",\n  \"verbosity\": \"concise\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/set-personality",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "set-personality"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Traditional Chef Greeting",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"session_id\": \"strict_session\",\n  \"message\": \"I want to learn cooking the classic way\",\n  \"creativity\": \"strict\",\n  \"verbosity\": \"concise\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/chat",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "chat"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Session State",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/session/{{session_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "session",
+            "{{session_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Reset Session",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/reset/{{session_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "reset",
+            "{{session_id}}"
+          ]
+        }
+      }
+    }
+  ]
+}
