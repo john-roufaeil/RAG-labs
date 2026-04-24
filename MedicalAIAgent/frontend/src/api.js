@@ -7,10 +7,24 @@ export async function analyzeCase(payload) {
   form.append("session_id", payload.sessionId);
   if (payload.mriImage) form.append("mri_image", payload.mriImage);
 
-  const res = await fetch(`${API_BASE}/api/analyze-case`, {
+  const response = await fetch(`${API_BASE}/api/analyze-case`, {
     method: "POST",
-    body: form
+    body: form,
   });
-  if (!res.ok) throw new Error(`Request failed: ${res.status}`);
-  return res.json();
+  if (!response.ok) throw new Error(`Request failed: ${response.status}`);
+  return response.json();
+}
+
+export async function getSessionHistory(sessionId) {
+  const response = await fetch(`${API_BASE}/api/session-history/${encodeURIComponent(sessionId)}`);
+  if (!response.ok) throw new Error(`History request failed: ${response.status}`);
+  return response.json();
+}
+
+export async function clearSession(sessionId) {
+  const response = await fetch(`${API_BASE}/api/session/${encodeURIComponent(sessionId)}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw new Error(`Clear session failed: ${response.status}`);
+  return response.json();
 }
